@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пиздатый Генератор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            padding: 50px;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .meme {
+            font-size: 24px;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 ПИЗДАТЫЙ ГЕНЕРАТОР 🔥</h1>
+        <div class="meme" id="memeText">{{ meme }}</div>
+        <button onclick="generateNewMeme()">СГЕНЕРИТЬ ПИЗДАТУЮ ФРАЗУ</button>
+    </div>
+
+    <script>
+        function generateNewMeme() {
+            fetch('/api/meme')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('memeText').textContent = data.meme;
+                });
+        }
+    </script>
+</body>
+</html>
